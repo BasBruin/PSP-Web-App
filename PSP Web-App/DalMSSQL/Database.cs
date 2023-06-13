@@ -21,7 +21,7 @@ namespace PSP_Web_App.DalMSSQL
         }
         public Database()
         {
-            connectiestring = "Server=mssqlstud.fhict.local;Database=dbi487790_pspproject;User Id=dbi487790_pspproject;Password=Welkom123;";
+            connectiestring = "Server=mssqlstud.fhict.local;Database=dbi487790_pspproject;User Id=dbi487790_pspproject;Password=Welkom12;";
         }
     }
 }

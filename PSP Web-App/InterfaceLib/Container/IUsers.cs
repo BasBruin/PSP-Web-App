@@ -4,7 +4,7 @@ namespace PSP_Web_App.InterfaceLib.Container
 {
     public interface IUsers
     {
-        List<UserDTO> GetUnsafeUser();
-        List<UserDTO> GetSafeUser();
+        UserDTO GetUserNotSafe(int id);
+        UserDTO GetUserSafe(int id);
     }
 }
