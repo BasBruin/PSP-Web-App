@@ -19,15 +19,22 @@ namespace PSP_Web_App.DalMSSQL
 
         public UserDTO GetUserSafe(int ID)
         {
+            // Inputvalidatie
+            if (ID <= 0)
+            {
+                throw new ArgumentException("Invalid ID");
+            }
+
             UserDTO user = null;
 
             using (SqlConnection connection = new SqlConnection(connectiestring))
             {
-                string query = "SELECT * FROM Users WHERE ID = @ID";
+                string query = "SELECT * FROM [User] WHERE ID = @ID";
                 connection.Open();
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
+                    // SQL paramatisering
                     command.Parameters.AddWithValue("@ID", ID);
 
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -37,8 +44,8 @@ namespace PSP_Web_App.DalMSSQL
                             user = new UserDTO(
                                 Convert.ToInt32(reader["ID"]),
                                 reader["Name"].ToString(),
-                                reader["Email"].ToString(),
-                                reader["Password"].ToString()
+                                reader["Password"].ToString(),
+                                reader["Email"].ToString()
                             );
                         }
                     }
@@ -48,13 +55,13 @@ namespace PSP_Web_App.DalMSSQL
             return user;
         }
 
-        public UserDTO GetUserNotSafe(int ID)
+        public UserDTO GetUserNotSafe(string ID)
         {
             UserDTO user = null;
 
             using (SqlConnection connection = new SqlConnection(connectiestring))
             {
-                string query = $"SELECT * FROM Users WHERE ID = '{ID}'";
+                string query = $"SELECT * FROM [User] WHERE ID = '{ID}'";
                 connection.Open();
 
                 using (SqlCommand command = new SqlCommand(query, connection))
@@ -66,8 +73,8 @@ namespace PSP_Web_App.DalMSSQL
                             user = new UserDTO(
                                 Convert.ToInt32(reader["ID"]),
                                 reader["Name"].ToString(),
-                                reader["Email"].ToString(),
-                                reader["Password"].ToString()
+                                reader["Password"].ToString(),
+                                reader["Email"].ToString()
                             );
                         }
                     }

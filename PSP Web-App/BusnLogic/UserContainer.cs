@@ -14,7 +14,7 @@ namespace PSP_Web_App.BusnLogic
             iUsers = iuser;
         }
 
-        public User GetUserNotSafe(int id)
+        public User GetUserNotSafe(string id)
         {
             User user = new(iUsers.GetUserNotSafe(id));
             return user;

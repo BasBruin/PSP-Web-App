@@ -22,7 +22,7 @@ namespace PSP_Web_App.Controllers
 
         [HttpGet]
         [Route("api/GetUserUnsafe")]
-        public string getUserUnsafe(int id)
+        public string getUserUnsafe(string id)
         {
             User user = us.GetUserNotSafe(id);
             var json = JsonSerializer.Serialize(user);
@@ -37,7 +37,6 @@ namespace PSP_Web_App.Controllers
             User user = us.GetUserSafe(id);
             var json = JsonSerializer.Serialize(user);
             return json;
-
         }
     }
     }
